@@ -21,6 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "string.h"
+#include <stdio.h>
 
 /* USER CODE END Includes */
 
@@ -61,7 +63,17 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+uint16_t adc[1];
+uint16_t adc_read;
 
+char msg[25];
+
+int ADCFinis = 0;
+int count = 0;
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+  ADCFinis = 1;
+}
 /* USER CODE END 0 */
 
 /**
@@ -98,6 +110,8 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
+   HAL_ADC_Start_DMA(&hadc1, adc, 1);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -105,6 +119,12 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+    count++;
+
+    adc_read = adc[0];
+
+    sprintf(msg, "ADC1: %hu  " , adc_read);
+    HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
 
     /* USER CODE BEGIN 3 */
   }
