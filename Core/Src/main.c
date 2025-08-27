@@ -129,11 +129,13 @@ int main(void)
       __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, i);
       HAL_Delay(5);
     }
+    HAL_Delay(2000);
 
     for(int i = 255 ; i>0; i--){
       __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, i);
       HAL_Delay(5);
     }
+    HAL_Delay(2000);
 
     /* USER CODE BEGIN 3 */
   }
