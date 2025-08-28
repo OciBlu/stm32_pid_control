@@ -25,5 +25,14 @@ ADC1 Setting
 System Core / NVIC Interrupt Table / ADC Global Interrupt
 - Preemtion Priority = 1
 
-GPIO Setting
-- PB12 Output
+TIM2 (PWM Setting output)
+- CH2 = PWM Generator CH2
+- Prescaler = 0
+- Counter Mode = UP
+- Counter Periode (Auto Reload Register) = 255
+- Internal Clock Division = No Division
+- auto-reload preload = Disable
+
+## Catatan
+- PWM Frequency = System Clock Frequency /(Prescaler+1)×(ARR+1)
+- The maximum prescaler and ARR value in an STM32 is 65535 for a 16-bit timer

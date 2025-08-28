@@ -116,7 +116,7 @@ int main(void)
 
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
 
-   HAL_ADC_Start_DMA(&hadc1, adc, 1);
+  HAL_ADC_Start_DMA(&hadc1, adc, 1);
 
   /* USER CODE END 2 */
 
@@ -126,12 +126,14 @@ int main(void)
   {
     /* USER CODE END WHILE */
     for(int i = 0 ; i<255; i++){
+      __HAL_TIM_SET_PRESCALER(&htim2, 6400);
       __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, i);
       HAL_Delay(5);
     }
     HAL_Delay(2000);
 
     for(int i = 255 ; i>0; i--){
+      __HAL_TIM_SET_PRESCALER(&htim2, 6400);
       __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, i);
       HAL_Delay(5);
     }
